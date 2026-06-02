@@ -4,15 +4,14 @@ package com.example.SpringSecurityLearning.UserController;
 import com.example.SpringSecurityLearning.Entity.UserModel;
 import com.example.SpringSecurityLearning.Repositary.UserRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
-@RequiredArgsConstructor
+@RequestMapping("user")
+
 public class Usercontroller {
+    @Autowired
     UserRepo repo;
 
 
@@ -21,5 +20,8 @@ public class Usercontroller {
      repo.save(model);
      return "user added";
     }
-
+    @GetMapping("/{id}")
+    public UserModel getUser(@PathVariable String  id){
+        return repo.findByName(id);
+    }
 }
