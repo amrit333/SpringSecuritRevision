@@ -22,6 +22,6 @@ public class Usercontroller {
     }
     @GetMapping("/{id}")
     public UserModel getUser(@PathVariable String  id){
-        return repo.findByName(id);
+        return repo.findByUsername(id);
     }
 }
